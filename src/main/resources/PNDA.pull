@@ -1,0 +1,44 @@
+###############################################################################
+###################### Gobblin MapReduce configurations #######################
+###############################################################################
+
+# File system URIs
+fs.uri=hdfs://10.0.1.63:8020
+writer.fs.uri=${fs.uri}
+
+job.name=PullFormSensorTest
+job.group=PNDA
+job.description=Pulls data from all kafka topics to HDFS
+
+# ==== Kafka Source ====
+source.class=gobblin.source.extractor.extract.kafka.KafkaSimpleSource
+source.timezone=UTC
+source.schema={"fields": [                                          \
+                   { "name": "timestamp", "type": "long" },         \
+                   { "name": "sensor_group", "type": "string" },    \
+                   { "name": "sensor", "type": "string" },          \
+                   { "name": "uuid", "type": "string"},             \
+                   { "name": "value", "type": "string" },           \
+                   { "name": "src", "type": "string"}               \
+                 ],                                                 \
+                 "name": "sensorRecord",                            \
+                 "type": "record"                                   \
+              }
+
+kafka.brokers=127.0.0.1:9092
+bootstrap.with.offset=earliest
+
+# ==== Converter ====
+converter.classes=gobblin.pnda.depa.PNDAConverter
+PNDA.quarantine.dataset.uri=dataset:hdfs://10.0.1.63:8020/user/pnda/PNDA_datasets/quarantine
+
+
+# ==== Writer ====
+writer.builder.class=gobblin.pnda.depa.PNDAKiteWriterBuilder
+kite.writer.dataset.uri=dataset:hdfs://10.0.1.63:8020/user/pnda/PNDA_datasets/datasets/kafka/depa_raw
+
+# ==== Metrics ====
+metrics.enabled=true
+metrics.reporting.file.enabled=true
+
+topic.whitelist=clb.demo.depa.raw
