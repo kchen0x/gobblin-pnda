@@ -6,9 +6,9 @@
 fs.uri=hdfs://10.0.1.63:8020
 writer.fs.uri=${fs.uri}
 
-job.name=PullFormSensorTest
-job.group=PNDA
-job.description=Pulls data from all kafka topics to HDFS
+job.name=DepaKafkaToHDFS
+job.group=gobblin
+job.description=Pulls data from depa kafka to HDFS
 
 # ==== Kafka Source ====
 source.class=gobblin.source.extractor.extract.kafka.KafkaSimpleSource
@@ -41,4 +41,5 @@ kite.writer.dataset.uri=dataset:hdfs://10.0.1.63:8020/user/pnda/PNDA_datasets/da
 metrics.enabled=true
 metrics.reporting.file.enabled=true
 
+# ==== Topic ====
 topic.whitelist=clb.demo.depa.raw
