@@ -25,7 +25,7 @@ source.schema={"fields": [                                          \
                  "type": "record"                                   \
               }
 
-kafka.brokers=127.0.0.1:9092
+kafka.brokers=10.0.1.214:9092
 bootstrap.with.offset=earliest
 
 # ==== Converter ====
