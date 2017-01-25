@@ -9,7 +9,6 @@ writer.fs.uri=${fs.uri}
 job.name=DepaKafkaToHDFS
 job.group=gobblin
 job.description=Pulls data from depa kafka to HDFS
-job.disabled=true
 
 mr.job.max.mappers=5
 
