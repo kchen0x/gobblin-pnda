@@ -1,0 +1,7 @@
+[
+  {"source" : "timestamp", "type" : "key"},
+  {"source" : "sensor", "type" : "column", "family" : "sensor", "qualifier" : "sensor"},
+  {"source" : "sensor_group", "type" : "column", "family" : "sensor", "qualifier" : "sgroup"},
+  {"source" : "uuid", "type" : "column", "family" : "sensor", "qualifier" : "uuid"},
+  {"source" : "value", "type" : "column", "family" : "sensor", "qualifier" : "value"}
+]
